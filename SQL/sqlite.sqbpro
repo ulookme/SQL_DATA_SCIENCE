@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="/Users/charleshajjar/Desktop/SQL/factbook2.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="2162"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,5:mainfacts"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">SELECT rank, Major_code, Major, Major_category, total
+FROM recent_grads;
+
+SELECT Major, Employed
+FROM recent_grads
+WHERE Employed &gt; 10000;</sql><sql name="SQL 2">SELECT Major, Employed
+FROM recent_grads
+WHERE Employed &gt; 10000
+LIMIT 10;</sql><sql name="SQL 3">SELECT Major, Median, Unemployed
+FROM recent_grads
+WHERE Median &gt;= 10000 OR Unemployed &lt;=1000
+LIMIT 20;</sql><sql name="SQL 4">SELECT Major, Major_category, Employed, Unemployment_rate
+FROM recent_grads
+WHERE ( Major_category = 'Business' OR  Major_category = 'Arts'  OR  Major_category = ' Health ' )
+AND ( Employed &gt; 20000   OR  Unemployment_rate &lt; 0.051 );
+</sql><sql name="SQL 5">SELECT Major
+FROM recent_grads
+ORDER BY Major DESC
+LIMIT 10;</sql><sql name="requeteB.sql">SELECT rank, Major_code, Major, Major_category, total
+FROM recent_grads;
+
+SELECT Major, Employed
+FROM recent_grads
+WHERE Employed &gt; 10000;
+
+
+SELECT Major, Major_category, Employed, Unemployment_rate
+FROM recent_grads
+WHERE ( Major_category = 'Business' OR  Major_category = 'Arts'  OR  Major_category = ' Health ' )
+AND ( Employed &gt; 20000   OR  Unemployment_rate &lt; 0.051 );
+
+
+SELECT Major
+FROM recent_grads
+ORDER BY Major DESC
+LIMIT 10;
+
+SELECT College_jobs, Median, Unemployed
+FROM recent_grads
+LIMIT 20;
+
+SELECT Major, total, Median, Unemployment_rate, Major_category
+FROM recent_grads
+WHERE (Major_category != 'Engineering')  AND (Median &lt;= 50000 OR Unemployed &gt; 0.065) ;
+
+SELECT Major
+FROM recent_grads
+WHERE Major_category != 'Engineering'
+ORDER BY Major DESC
+LIMIT 20 ;
+
+SELECT Major_category, avg(ShareWomen )*100
+FROM recent_grads
+GROUP BY  Major_category;
+
+SELECT Major_category, avg(ShareWomen )*100 as pourcentage_de_femme
+FROM recent_grads
+GROUP BY  Major_category;
+
+
+SELECT Major_category, avg(ShareWomen )*100 as pourcentage_de_femme
+FROM recent_grads
+GROUP BY  Major_category;
+
+SELECT Major_category, avg(ShareWomen ) *100 pourcentage_de_femme
+FROM recent_grads
+GROUP BY  Major_category
+HAVING pourcentage_de_femme &gt; 60 ;
+
+SELECT Major_category, round( ShareWomen, 2 ) AS  rounded_share_women
+FROM  recent_grads;
+
+SELECT Major_category, round(avg(Full_time)/ avg(total),3) AS share_degree
+FROM recent_grads
+GROUP BY Major_category
+HAVING share_degree &lt; 0.7;
+</sql><sql name="statistiqueRequest.sql">SELECT min(population_growth)
+FROM facts;
+
+SELECT max(death_rate)
+FROM facts;
+
+SELECT sum(birth_rate)
+FROM facts;
+
+SELECT avg(birth_rate)
+FROM facts;
+
+SELECT sum(area_land)
+FROM facts;
+
+SELECT avg(area_water)
+FROM facts;
+
+SELECT avg(population_growth)
+FROM facts
+WHERE population &gt; 100000;
+
+SELECT DISTINCT birth_rate
+FROM facts;
+
+SELECT avg( DISTINCT birth_rate)
+FROM facts
+WHERE population &gt; 2000000;
+
+SELECT  sum( DISTINCT population)
+FROM facts
+WHERE area_land &gt; 3000000;
+
+SELECT population/1000000.0
+FROM facts;
+
+SELECT population_growth/1000000.0
+FROM facts;
+
+SELECT avg(population ), avg(population_growth), avg(birth_rate), avg(death_rate)
+FROM facts;
+
+SELECT min(population), min(population_growth), min(birth_rate), min(death_rate)
+FROM facts
+WHERE population &lt; 20000000000;
+
+SELECT max(population), max(population_growth), max(birth_rate), max(death_rate)
+FROM facts
+WHERE population  &lt;20000000000 ;
+
+SELECT min(round(population + population * (population_growth/100), 0)),
+max(round(population + population * (population_growth/100), 0)),
+avg(round(population + population * (population_growth/100), 0))
+FROM facts
+WHERE population &gt; 0 AND population &lt; 70000000000
+AND population IS NOT NULL AND population_growth IS NOT NULL ; </sql><current_tab id="6"/></tab_sql></sqlb_project>
